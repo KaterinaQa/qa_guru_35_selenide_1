@@ -20,16 +20,17 @@ public class PracticeSelenideSearchTest {
         $("[data-filterable-for='wiki-pages-filter']").shouldHave(text("SoftAssertions"));
         $("a[href='/selenide/selenide/wiki/SoftAssertions']").click();
         $("#wiki-body").shouldHave(text("3. Using JUnit5 extend test class:"));
-        $$(".highlight-source-java").get(3).shouldHave(text("@ExtendWith({SoftAssertsExtension.class})\n" +
-                "class Tests {\n" +
-                "  @Test\n" +
-                "  void test() {\n" +
-                "    Configuration.assertionMode = SOFT;\n" +
-                "    open(\"page.html\");\n" +
-                "\n" +
-                "    $(\"#first\").should(visible).click();\n" +
-                "    $(\"#second\").should(visible).click();\n" +
-                "  }\n" +
-                "}"));
+        $$(".highlight-source-java").get(3).shouldHave(text("""@ExtendWith({SoftAssertsExtension.class})
+class Tests {
+  @Test
+  void test() {
+    Configuration.assertionMode = SOFT;
+    open("page.html");
+
+    $("#first").should(visible).click();
+    $("#second").should(visible).click();
+  }
+}
+                """);
     }
 }
